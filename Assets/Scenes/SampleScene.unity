@@ -894,7 +894,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1680367393}
+=======
+<<<<<<< HEAD
+  m_GameObject: {fileID: 2088971666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e09455d6d3a6440a8e66e36a4ab4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 2088971672}
+  spriteRenderer: {fileID: 2088971669}
+  body: {fileID: 2088971671}
+  foot: {fileID: 1655651730}
+  _jumpSpeed: 10
+--- !u!50 &2088971671
+Rigidbody2D:
+  serializedVersion: 4
+=======
+  m_GameObject: {fileID: 1702598731}
+>>>>>>> 862a6eab2d3db11d608e2513b438a73d427d3fd4
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.992, y: -6, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
@@ -920,11 +940,35 @@ MonoBehaviour:
   groundDetection: {fileID: 104653770}
 --- !u!61 &1680367398
 BoxCollider2D:
+>>>>>>> 39fbf900e03027f0ad514f92babb57311daa1f0a
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1680367393}
+=======
+<<<<<<< HEAD
+  m_GameObject: {fileID: 2088971666}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 3
+  m_Material: {fileID: 6200000, guid: 371c10142021aad4e990b6c4dbf864b2, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!95 &2088971672
+Animator:
+  serializedVersion: 3
+=======
+  m_GameObject: {fileID: 1702598731}
+>>>>>>> 862a6eab2d3db11d608e2513b438a73d427d3fd4
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -944,8 +988,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.41695547, y: 0.6289718}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 --- !u!1001 &3379594039479050239
 PrefabInstance:
+=======
+--- !u!114 &1702598736
+MonoBehaviour:
+>>>>>>> 39fbf900e03027f0ad514f92babb57311daa1f0a
+>>>>>>> 862a6eab2d3db11d608e2513b438a73d427d3fd4
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
