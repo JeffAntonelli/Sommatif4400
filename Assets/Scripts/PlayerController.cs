@@ -170,5 +170,13 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.flipX = !spriteRenderer.flipX;
         _facingRight = !_facingRight;
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
 
 }
