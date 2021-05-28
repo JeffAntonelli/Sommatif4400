@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.Serialization;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +12,8 @@ public class PlayerController : MonoBehaviour
         None,
         PlayerIdle,
         PlayerWalk,
-        Jump
+        Jump,
+        Bouncing
     }
 
     private State _currentState = State.None;
@@ -24,14 +28,16 @@ public class PlayerController : MonoBehaviour
     private bool _jumpButtonDown = false;
     private bool _jumpButton = false;
     private bool _isSwitching = false;
+    private bool isbouncing_ = false;
 
     private bool top; // Pour la rotation.
 
 
-    private float _jumpTimeCounter;
+    private float jumpTimeCounter_;
     [SerializeField] private const float JumpTime = 0.5f;
     [SerializeField] private const float DeadZone = 0.1f; 
-    [SerializeField] private float _jumpSpeed = 5.0f;
+    [SerializeField] private float jumpSpeed = 5.0f;
+    [SerializeField] private float bouncingHeight = 2.0f;
     const float MoveSpeed = 15.0f;
 
 
@@ -74,6 +80,11 @@ public class PlayerController : MonoBehaviour
             JumpVariation();
         }
         _jumpButton = false;
+
+        if (foot.FootContact_ > 0 && CompareTag("enemy"))
+        {
+            Bouncing();
+        }
 
 
         var vel = body.velocity;
@@ -118,7 +129,24 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeState(State.PlayerIdle);
                 }
+                
+                if (foot.FootContact_ > 0 && CompareTag("enemy"))
+                {
+                    ChangeState(State.Bouncing);
+                }
                 break;
+            case State.Bouncing:
+                if (foot.FootContact_ == 0)
+                {
+                    ChangeState(State.Jump);
+                }
+                
+                if (foot.FootContact_ > 0)
+                {
+                    ChangeState(State.PlayerIdle);
+                }
+                break;
+                
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -129,19 +157,25 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Work");
         _isJumping = true;
-        _jumpTimeCounter = JumpTime;
+        jumpTimeCounter_ = JumpTime;
         var vel = body.velocity;
-        body.velocity = new Vector2(vel.x, _jumpSpeed);
+        body.velocity = new Vector2(vel.x, jumpSpeed);
+    }
+
+    private void Bouncing()
+    {
+        isbouncing_ = true;
+        transform.position = new Vector3(body.velocity.x, bouncingHeight, 0);
     }
 
 
     private void JumpVariation()
     {
-        if (_jumpTimeCounter > 0)
+        if (jumpTimeCounter_ > 0)
         {
             var vel = body.velocity;
-            body.velocity = new Vector2(vel.x, _jumpSpeed);
-            _jumpTimeCounter -= Time.deltaTime;
+            body.velocity = new Vector2(vel.x, jumpSpeed);
+            jumpTimeCounter_ -= Time.deltaTime;
         }
     }
 
@@ -158,10 +192,12 @@ public class PlayerController : MonoBehaviour
             case State.Jump:
                 anim.Play("Player_Jump");
                 break;
+            case State.Bouncing:
+                anim.Play("Player_Jump");
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
-
         _currentState = state;
     }
 
@@ -170,7 +206,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.flipX = !spriteRenderer.flipX;
         _facingRight = !_facingRight;
     }
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("enemy"))
@@ -178,5 +213,4 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patrol : MonoBehaviour
+public class PatrolLeft : MonoBehaviour
 {
     // Handle the enemy patrol
 
@@ -12,7 +12,7 @@ public class Patrol : MonoBehaviour
     
     private bool movingLeft_ = true;
     
-    public Transform groundDetection;
+    [SerializeField] Transform groundDetection;
 
     private void Update()
     {
@@ -30,8 +30,12 @@ public class Patrol : MonoBehaviour
                 transform.eulerAngles = new Vector3(0,-180,0);
                 movingLeft_ = true;
             }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Foot"))
         {
-            
+            Destroy(gameObject);
         }
     }
 }
