@@ -8,6 +8,8 @@ TagManager:
   - enemy
   - Foot
   - pipe
+  - Spikes
+  - Ice
   layers:
   - Default
   - TransparentFX

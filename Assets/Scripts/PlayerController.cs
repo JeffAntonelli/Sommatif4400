@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     private bool _jumpButton = false;
     private bool _isSwitching = false;
     private bool isbouncing_ = false;
-
     private bool top; // Pour la rotation.
 
 
@@ -85,7 +84,6 @@ public class PlayerController : MonoBehaviour
         {
             Bouncing();
         }
-
 
         var vel = body.velocity;
         body.velocity = new Vector2(MoveSpeed * Input.GetAxis("Horizontal"), vel.y);
@@ -209,6 +207,11 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("enemy"))
+        {
+            Destroy(gameObject);
+        }
+
+        if ( other.gameObject.CompareTag("Spikes"))
         {
             Destroy(gameObject);
         }
