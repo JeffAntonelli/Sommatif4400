@@ -182,16 +182,16 @@ public class PlayerController : MonoBehaviour
         switch (state)
         {
             case State.PlayerIdle:
-                anim.Play("Player_Idle");
+                anim.Play("PlayerIdle");
                 break;
             case State.PlayerRun:
-                anim.Play("Player_Walk");
+                anim.Play("PlayerRun");
                 break;
             case State.Jump:
-                anim.Play("Player_Jump");
+                anim.Play("Jump");
                 break;
             case State.Bouncing:
-                anim.Play("Player_Jump");
+                //anim.Play("Player_Jump");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
