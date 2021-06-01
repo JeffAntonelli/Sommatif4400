@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     {
         None,
         PlayerIdle,
-        PlayerWalk,
+        PlayerRun,
         Jump,
         Bouncing
     }
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             case State.PlayerIdle:
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) > DeadZone)
                 {
-                    ChangeState(State.PlayerWalk);
+                    ChangeState(State.PlayerRun);
                 }
 
                 if (foot.FootContact_ == 0)
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
                     ChangeState(State.Jump);
                 }
                 break;
-            case State.PlayerWalk:
+            case State.PlayerRun:
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) < DeadZone)
                 {
                     ChangeState(State.PlayerIdle);
@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
             case State.PlayerIdle:
                 anim.Play("Player_Idle");
                 break;
-            case State.PlayerWalk:
+            case State.PlayerRun:
                 anim.Play("Player_Walk");
                 break;
             case State.Jump:
