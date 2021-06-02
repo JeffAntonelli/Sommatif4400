@@ -2327,6 +2327,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CopperMan
       objectReference: {fileID: 0}
+    - target: {fileID: 7155649076952008294, guid: d256f87baa61bc24696229314c44ec7c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155649076952008294, guid: d256f87baa61bc24696229314c44ec7c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.78
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d256f87baa61bc24696229314c44ec7c, type: 3}
 --- !u!1001 &1848342128572751268
@@ -2393,6 +2401,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3945810212980396144, guid: 36bde368d3902a041ba7d8c479f6c442, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4039189466882761988, guid: 36bde368d3902a041ba7d8c479f6c442, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2470,6 +2482,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 595789046324423433, guid: 1f40904b41e0c3847932e7086b17cbda, type: 3}
+      propertyPath: leftPipeExit
+      value: 
+      objectReference: {fileID: 1790557091}
+    - target: {fileID: 595789046324423433, guid: 1f40904b41e0c3847932e7086b17cbda, type: 3}
+      propertyPath: leftPipeEntry
+      value: 
+      objectReference: {fileID: 1995817961}
+    - target: {fileID: 1533649484793243347, guid: 1f40904b41e0c3847932e7086b17cbda, type: 3}
+      propertyPath: rightPipeExit
+      value: 
+      objectReference: {fileID: 45245916}
+    - target: {fileID: 1533649484793243347, guid: 1f40904b41e0c3847932e7086b17cbda, type: 3}
+      propertyPath: rightPipeEntry
+      value: 
+      objectReference: {fileID: 2011302392}
     - target: {fileID: 4672828323761496748, guid: 1f40904b41e0c3847932e7086b17cbda, type: 3}
       propertyPath: leftPipeExit
       value: 
