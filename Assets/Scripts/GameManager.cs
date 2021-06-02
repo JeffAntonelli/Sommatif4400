@@ -6,11 +6,11 @@ using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    //Handle Stage 1
+    //Handle Stages
     
     [SerializeField] private GameObject[] enemy;
     [SerializeField] private GameObject pausingGameobject;
-    [SerializeField] private SceneManager level_;
+    [SerializeField] private Scene level_;
     
     
     void Update()
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
         if (enemy.Length == 0)
         {
-            SceneManager.LoadScene("N2");
+            SceneManager.LoadScene("D2");
         }
 
         if(Input.GetKey(KeyCode.Escape))
