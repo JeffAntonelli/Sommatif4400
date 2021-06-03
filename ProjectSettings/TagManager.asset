@@ -10,6 +10,7 @@ TagManager:
   - pipe
   - Spikes
   - Ice
+  - Fly
   layers:
   - Default
   - TransparentFX

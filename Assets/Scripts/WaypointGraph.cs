@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using path; 
 using System;
-using System.Runtime.CompilerServices;
+using System.Numerics;
 using UnityEditor;
+using Vector2 = UnityEngine.Vector2;
 
 public class WaypointGraph : MonoBehaviour
 {
@@ -66,7 +67,7 @@ public class WaypointGraph : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Vector2 startPos = 
     }
 
     private void OnDrawGizmos()
