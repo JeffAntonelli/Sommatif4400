@@ -7,34 +7,16 @@ using UnityEngine.EventSystems;
 public class MainMenuScript : MonoBehaviour
 {
    
-   public GameObject menuPlayButton, menuCommandButton, menuExitButton, menuReturnButton;
+   [SerializeField] private GameObject menuPlayButton, menuExitButton;
    public void PlayTheGame()
    {
-      SceneManager.LoadScene("Race");
+      SceneManager.LoadScene("N1");
       
       EventSystem.current.SetSelectedGameObject(null);
         
       EventSystem.current.SetSelectedGameObject(menuPlayButton);
    }
-
-   public void CommandMenu()
-   {
-      SceneManager.LoadScene("Command_Menu");
-      
-      EventSystem.current.SetSelectedGameObject(null);
-        
-      EventSystem.current.SetSelectedGameObject(menuCommandButton);
-   }
    
-   public void ReturnMenu()
-   {
-      SceneManager.LoadScene("Main_Menu");
-
-      EventSystem.current.SetSelectedGameObject(null);
-        
-      EventSystem.current.SetSelectedGameObject(menuReturnButton);
-   }
-
    public void QuitTheGame()
    {
       Debug.Log("QUIT THE GAME");
