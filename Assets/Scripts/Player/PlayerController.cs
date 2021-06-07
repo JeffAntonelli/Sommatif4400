@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private const float JumpTime = 0.5f;
     [SerializeField] private const float DeadZone = 0.1f; 
     [SerializeField] private float jumpSpeed = 5.0f;
-    [SerializeField] private float bouncingHeight = 2.0f;
     const float MoveSpeed = 15.0f;
 
 

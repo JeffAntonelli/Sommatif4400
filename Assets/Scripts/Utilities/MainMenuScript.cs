@@ -10,7 +10,7 @@ public class MainMenuScript : MonoBehaviour
    [SerializeField] private GameObject menuPlayButton, menuExitButton;
    public void PlayTheGame()
    {
-      SceneManager.LoadScene("N1");
+      SceneManager.LoadScene(Random.Range(1, 16));
       
       EventSystem.current.SetSelectedGameObject(null);
         
