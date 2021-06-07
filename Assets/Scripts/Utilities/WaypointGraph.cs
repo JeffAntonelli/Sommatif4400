@@ -8,11 +8,14 @@ using UnityEditor;
 
 public class WaypointGraph : MonoBehaviour
 {
-    private Graph graph_ = new Graph();
+    private Graph graph1_ = new Graph();
 
-    [SerializeField] private float resolution = 0.5f;
+    [SerializeField] private float CamResolution = 0.5f;
 
-    private List<int> path = new List<int>();
+    private List<Vector3> GenerateShortestPath(Vector3 startPos, Vector3 EndPos)
+    {
+        graph1_.Nodes[0].position// Get closest start nodeIndex, get closest end nodeIndex.
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -20,27 +23,27 @@ public class WaypointGraph : MonoBehaviour
         var cameraSize = 2.0f * mainCamera.orthographicSize * new Vector2(mainCamera.aspect, 1.0f);
         var cameraRect = new Rect() {min = -cameraSize / 2.0f, max = cameraSize / 2.0f};
 
-        var width = cameraRect.width / resolution;
-        var height = cameraRect.height / resolution;
+        var width = cameraRect.width / CamResolution;
+        var height = cameraRect.height / CamResolution;
         Dictionary<Vector2Int, int> nodeMap = new Dictionary<Vector2Int, int>();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                var worldPos = new Vector2(x, y) * resolution - cameraRect.size / 2.0f;
-                var raycast = Physics2D.Raycast(worldPos, Vector2.up, resolution / 2.0f);
+                var worldPos = new Vector2(x, y) * CamResolution - cameraRect.size / 2.0f;
+                var raycast = Physics2D.Raycast(worldPos, Vector2.up, CamResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
-                raycast = Physics2D.Raycast(worldPos, Vector2.down, resolution / 2.0f);
+                raycast = Physics2D.Raycast(worldPos, Vector2.down, CamResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
-                raycast = Physics2D.Raycast(worldPos, Vector2.left, resolution / 2.0f);
+                raycast = Physics2D.Raycast(worldPos, Vector2.left, CamResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
-                raycast = Physics2D.Raycast(worldPos, Vector2.right, resolution / 2.0f);
+                raycast = Physics2D.Raycast(worldPos, Vector2.right, CamResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
-                nodeMap[new Vector2Int(x, y)] = graph_.AddNode(worldPos);
+                nodeMap[new Vector2Int(x, y)] = graph1_.AddNode(worldPos);
             }
         }
 
@@ -56,29 +59,24 @@ public class WaypointGraph : MonoBehaviour
                     var neighborPos = pos + new Vector2Int(dx, dy);
                     if (neighborPos != pos && nodeMap.ContainsKey(neighborPos))
                     {
-                        graph_.AddNeighborEdge(nodeIndex, nodeMap[neighborPos]);
+                        graph1_.AddNeighborEdge(nodeIndex, nodeMap[neighborPos]);
                     }
                 }
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < graph_.Nodes.Count; i++)
+        for (int i = 0; i < graph1_.Nodes.Count; i++)
         {
-            var node = graph_.Nodes[i];
+            var node = graph1_.Nodes[i];
 
             foreach (var neighbor in node.neighbors)
             {
                 Gizmos.color = path.Contains(i) && path.Contains(neighbor.nodeIndex) ? Color.red : Color.blue;
-                Gizmos.DrawLine(node.position, graph_.Nodes[neighbor.nodeIndex].position);
+                Gizmos.DrawLine(node.position, graph1_.Nodes[neighbor.nodeIndex].position);
             }
         }
 
