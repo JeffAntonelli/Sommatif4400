@@ -8,8 +8,7 @@ public class Snake : MonoBehaviour
     // Handle the enemy patrol
 
     [SerializeField] float speed;
-
-    private bool movingLeft_ = true;
+    
     private void Update()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
