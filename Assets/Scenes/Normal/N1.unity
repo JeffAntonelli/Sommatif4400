@@ -1276,7 +1276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1370579657
 Animator:
   serializedVersion: 3
@@ -1586,6 +1586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1824914649}
   - component: {fileID: 1824914648}
+  - component: {fileID: 1824914650}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1607,8 +1608,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: []
   pausingGameobject: {fileID: 0}
-  level_:
-    m_Handle: 0
 --- !u!4 &1824914649
 Transform:
   m_ObjectHideFlags: 0
@@ -1623,6 +1622,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1824914650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824914647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb8c0392482682499a9de74bb2b68f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1995817961 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7799755938589408433, guid: 92ccd1f2b14efdc43a9142bc4ef5e029, type: 3}
