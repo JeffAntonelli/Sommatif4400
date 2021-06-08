@@ -15,7 +15,7 @@ public class Snake : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Foot"))
+        if (other.gameObject.CompareTag("Foot") || other.gameObject.CompareTag("Spikes"))
         {
             Destroy(gameObject);
         }

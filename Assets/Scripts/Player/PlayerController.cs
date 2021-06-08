@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
@@ -145,7 +146,6 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        Debug.Log("Work");
         _isJumping = true;
         jumpTimeCounter_ = JumpTime;
         var vel = body.velocity;
@@ -191,14 +191,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("enemy"))
+        if (other.gameObject.CompareTag("enemy") || other.gameObject.CompareTag("Spikes"))
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene(Application.loadedLevel);
         }
-
-        if ( other.gameObject.CompareTag("Spikes"))
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }

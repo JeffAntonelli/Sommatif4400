@@ -173,7 +173,7 @@ public class Wrapping : MonoBehaviour
         PositionGhostPlayers();
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         if(GUI.Button(new Rect(20, 20, 160, 48), "Simple Wrapping"))
         {
@@ -184,9 +184,9 @@ public class Wrapping : MonoBehaviour
         {
             SwitchToAdvancedWrapping();
         }
-    }
+    }*/
 
-    void SwitchToSimpleWrapping()
+    /*void SwitchToSimpleWrapping()
     {
         advancedWrapping = false;
 
@@ -200,5 +200,5 @@ public class Wrapping : MonoBehaviour
     {
         advancedWrapping = true;
         CreateGhostPlayers();
-    }
+    }*/
 }

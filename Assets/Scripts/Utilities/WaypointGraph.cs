@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 
 public class WaypointGraph : MonoBehaviour
 {
-    private Graph graph1_ = new Graph();
+    public Graph graph = new Graph();
 
     [SerializeField] private float camResolution = 0.5f;
     
@@ -22,13 +22,13 @@ public class WaypointGraph : MonoBehaviour
 
         int endPosIndex = NearestNodeIndex(endPos);
 
-        List<int> posIndex = graph1_.DijkstraAlgorithm(startPosIndex, endPosIndex);
+        List<int> posIndex = graph.DijkstraAlgorithm(startPosIndex, endPosIndex);
 
         List<Vector2> path = new List<Vector2>();
         
         foreach (int index in posIndex)
         {
-            path.Add(graph1_.Nodes[index].position);
+            path.Add(graph.Nodes[index].position);
         }
 
         return path;
@@ -39,9 +39,9 @@ public class WaypointGraph : MonoBehaviour
         int shortestStartNode = 0;
         float shortestStartNodeDistance = float.MaxValue;
 
-        for (var index = 0; index < graph1_.Nodes.Count; index++)
+        for (var index = 0; index < graph.Nodes.Count; index++)
         {
-            Node node = graph1_.Nodes[index];
+            Node node = graph.Nodes[index];
             if (shortestStartNodeDistance < Vector2.Distance(node.position, vector2))
             {
                 shortestStartNodeDistance = Vector2.Distance(node.position, vector2);
@@ -80,7 +80,7 @@ public class WaypointGraph : MonoBehaviour
                 raycast = Physics2D.Raycast(worldPos, Vector2.right, camResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
-                nodeMap[new Vector2Int(x, y)] = graph1_.AddNode(worldPos);
+                nodeMap[new Vector2Int(x, y)] = graph.AddNode(worldPos);
             }
         }
 
@@ -96,7 +96,7 @@ public class WaypointGraph : MonoBehaviour
                     var neighborPos = pos + new Vector2Int(dx, dy);
                     if (neighborPos != pos && nodeMap.ContainsKey(neighborPos))
                     {
-                        graph1_.AddNeighborEdge(nodeIndex, nodeMap[neighborPos]);
+                        graph.AddNeighborEdge(nodeIndex, nodeMap[neighborPos]);
                     }
                 }
             }
@@ -106,16 +106,15 @@ public class WaypointGraph : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < graph1_.Nodes.Count; i++)
+        for (int i = 0; i < graph.Nodes.Count; i++)
         {
-            var node = graph1_.Nodes[i];
+            var node = graph.Nodes[i];
 
             foreach (var neighbor in node.neighbors)
             {
                 Gizmos.color = path.Contains(i) && path.Contains(neighbor.nodeIndex) ? Color.red : Color.blue;
-                Gizmos.DrawLine(node.position, graph1_.Nodes[neighbor.nodeIndex].position);
+                Gizmos.DrawLine(node.position, graph.Nodes[neighbor.nodeIndex].position);
             }
         }
-
     }
 }
