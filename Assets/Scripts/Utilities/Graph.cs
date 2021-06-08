@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Priority_Queue;
@@ -7,49 +6,11 @@ using UnityEngine;
 
 namespace path
 {
-    public struct Neighbor
-    {
-        public int nodeIndex;
-        public float length;
-
-        public Neighbor(int nodeIndex, float length)
-        {
-            this.nodeIndex = nodeIndex;
-            this.length = length;
-        }
-    }
-    /** 
-     * <summary>Simple node struct used for pathfinding</summary>
-     */
-    public struct Node
-    {
-        public Vector2 position;
-        public List<Neighbor> neighbors;
-
-        public Node(Vector2 position)
-        {
-            this.position = position;
-            neighbors = new List<Neighbor>();
-        }
-
-    }
-
-
-
     /**
      * <summary>Bidirectional graph</summary> 
      */
     public class Graph
     {
-        public struct QueryInfo
-        {
-            public int nodeTraversedCount;
-            public QueryInfo(int nodeTraversedCount)
-            {
-                this.nodeTraversedCount = nodeTraversedCount;
-            }
-
-        }
         private List<Node> nodes_ = new List<Node>();
         private QueryInfo lastQueryInfo_ = new QueryInfo(0);
         public QueryInfo LastQueryInfo => lastQueryInfo_;
@@ -75,12 +36,7 @@ namespace path
                 Nodes[node2].neighbors.Add(new Neighbor(node1, distance));
             }
         }
-
-        public void Clear()
-        {
-            Nodes.Clear();
-        }
-
+        
         public List<int> DijkstraAlgorithm(int startNode, int destination)
         {
             var path = new List<int>();
@@ -140,10 +96,13 @@ namespace path
             path.Reverse();
             return path;
         }
-        /**
-         * <summary>Calculate the shortest path from the startNode to the destinationNode.
-         * Using A* pathfinding algorithm.</summary>
-         */
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startNode"></param>
+        /// <param name="destinationNode"></param>
+        /// <returns></returns>
         public List<int> CalculatePath(int startNode, int destinationNode)
         {
             var path = new List<int>();

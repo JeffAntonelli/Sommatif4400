@@ -3,19 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using path; 
 using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEditor;
+using UnityEngine.Serialization;
 
 public class WaypointGraph : MonoBehaviour
 {
     private Graph graph1_ = new Graph();
 
-    [SerializeField] private float CamResolution = 0.5f;
+    [SerializeField] private float camResolution = 0.5f;
+    
+    private List<int> path = new List<int>();
 
-    private List<Vector3> GenerateShortestPath(Vector3 startPos, Vector3 EndPos)
+    public List<Vector2> ShortestPath(Vector2 startPos, Vector2 endPos)
     {
-        graph1_.Nodes[0].position// Get closest start nodeIndex, get closest end nodeIndex.
+        int startPosIndex = NearestNodeIndex(startPos);
+
+        int endPosIndex = NearestNodeIndex(endPos);
+
+        List<int> posIndex = graph1_.DijkstraAlgorithm(startPosIndex, endPosIndex);
+
+        List<Vector2> path = new List<Vector2>();
+        
+        foreach (int index in posIndex)
+        {
+            path.Add(graph1_.Nodes[index].position);
+        }
+
+        return path;
     }
+
+    private int NearestNodeIndex(Vector2 vector2)
+    {
+        int shortestStartNode = 0;
+        float shortestStartNodeDistance = float.MaxValue;
+
+        for (var index = 0; index < graph1_.Nodes.Count; index++)
+        {
+            Node node = graph1_.Nodes[index];
+            if (shortestStartNodeDistance < Vector2.Distance(node.position, vector2))
+            {
+                shortestStartNodeDistance = Vector2.Distance(node.position, vector2);
+                shortestStartNode = index;
+            }
+        }
+
+        return shortestStartNode;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,24 +59,25 @@ public class WaypointGraph : MonoBehaviour
         var cameraSize = 2.0f * mainCamera.orthographicSize * new Vector2(mainCamera.aspect, 1.0f);
         var cameraRect = new Rect() {min = -cameraSize / 2.0f, max = cameraSize / 2.0f};
 
-        var width = cameraRect.width / CamResolution;
-        var height = cameraRect.height / CamResolution;
+        var width = cameraRect.width / camResolution;
+        var height = cameraRect.height / camResolution;
         Dictionary<Vector2Int, int> nodeMap = new Dictionary<Vector2Int, int>();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                var worldPos = new Vector2(x, y) * CamResolution - cameraRect.size / 2.0f;
-                var raycast = Physics2D.Raycast(worldPos, Vector2.up, CamResolution / 2.0f);
+                var worldPos = new Vector2(x, y) * camResolution - cameraRect.size / 2.0f;
+                var raycast = Physics2D.Raycast(worldPos, Vector2.up, camResolution / 2.0f)
+                    ;
                 if (raycast.collider != null)
                     continue;
-                raycast = Physics2D.Raycast(worldPos, Vector2.down, CamResolution / 2.0f);
+                raycast = Physics2D.Raycast(worldPos, Vector2.down, camResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
-                raycast = Physics2D.Raycast(worldPos, Vector2.left, CamResolution / 2.0f);
+                raycast = Physics2D.Raycast(worldPos, Vector2.left, camResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
-                raycast = Physics2D.Raycast(worldPos, Vector2.right, CamResolution / 2.0f);
+                raycast = Physics2D.Raycast(worldPos, Vector2.right, camResolution / 2.0f);
                 if (raycast.collider != null)
                     continue;
                 nodeMap[new Vector2Int(x, y)] = graph1_.AddNode(worldPos);
