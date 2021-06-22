@@ -12,7 +12,11 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     [SerializeField] private GameObject[] enemy;
     [SerializeField] private GameObject pausingGameobject;
-    List<int> levelsToPlay_ = new List<int>{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+    /*List<int> level1 = new List<int> {1,2,3,4};
+    List<int> level2 = new List<int> {5,6,7,8};
+    List<int> level3 = new List<int> {9,10,11,12};
+    List<int> level4 = new List<int> {13,14,15,16};*/
+    private List<int> levelsToPlay_ = new List<int> {5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
 
 
     private void Awake()

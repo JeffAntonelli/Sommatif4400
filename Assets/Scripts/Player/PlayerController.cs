@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(Application.loadedLevel);
+        }
+        
         if (Input.GetButtonDown("Jump"))
         {
             _jumpButtonDown = true;

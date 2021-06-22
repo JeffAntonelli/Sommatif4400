@@ -8,9 +8,10 @@ public class MainMenuScript : MonoBehaviour
 {
    
    [SerializeField] private GameObject menuPlayButton, menuExitButton;
+   List<int> level1 = new List<int> {1,2,3,4};
    public void PlayTheGame()
    {
-      SceneManager.LoadScene(Random.Range(1, 16));
+      SceneManager.LoadScene(Random.Range(1,4));
       
       EventSystem.current.SetSelectedGameObject(null);
         
