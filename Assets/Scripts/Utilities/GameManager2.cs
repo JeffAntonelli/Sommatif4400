@@ -33,7 +33,7 @@ public class GameManager2 : MonoBehaviour
         
         if (enemy.Length == 0)
         {
-            SceneManager.LoadScene(Random.Range(5,8));
+            SceneManager.LoadScene(Random.Range(9,13));
             
         if (instance == null)
         {
