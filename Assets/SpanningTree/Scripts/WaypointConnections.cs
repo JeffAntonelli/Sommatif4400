@@ -7,6 +7,7 @@ namespace SpanningTree.Scripts {
         
         public Transform From;
         public Transform To;
+        
 
         public WaypointConnection(Transform from, Transform to) {
             From = from;

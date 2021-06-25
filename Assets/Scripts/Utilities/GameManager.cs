@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         enemy = GameObject.FindGameObjectsWithTag("enemy");
-        
+
+       
         if (enemy.Length == 0)
         {
             int nextLevelIndex = Random.Range(0, levelsToPlay_.Count);
