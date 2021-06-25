@@ -17,6 +17,7 @@ public class Snake : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Foot") || other.gameObject.CompareTag("Spikes"))
         {
+            FindObjectOfType<AudioManager>().Play("Bump");
             Destroy(gameObject);
         }
     }

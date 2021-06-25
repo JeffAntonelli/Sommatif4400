@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         if (foot.FootContact_ > 0 && _jumpButtonDown)
         {
             Jump();
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
         _jumpButtonDown = false;
 

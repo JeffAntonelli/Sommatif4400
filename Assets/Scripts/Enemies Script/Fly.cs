@@ -13,6 +13,7 @@ public class Fly : MonoBehaviour
         if (other.gameObject.CompareTag("Foot") || other.gameObject.CompareTag("Spikes"))
         {
             Destroy(gameObject);
+            FindObjectOfType<AudioManager>().Play("Bump");
         }
     }
 }
