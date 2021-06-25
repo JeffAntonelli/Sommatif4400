@@ -35,8 +35,8 @@ public class Copperman : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Foot"))
         {
-            FindObjectOfType<AudioManager>().Play("Bump");
             Destroy(gameObject);
+            FindObjectOfType<AudioManager>().Play("Bump");
         }
     }
 }

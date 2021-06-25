@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
+
 
 public class GameManager1 : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class GameManager1 : MonoBehaviour
     private static GameManager1 instance = null;
     [SerializeField] private GameObject[] enemy;
     [SerializeField] private GameObject pausingGameobject;
+    [SerializeField] Text enemyCountText;
 
 
     private void Awake()
@@ -30,7 +33,8 @@ public class GameManager1 : MonoBehaviour
     void Update()
     {
         enemy = GameObject.FindGameObjectsWithTag("enemy");
-        
+        enemyCountText.text = "Enemies : " + enemy.Length.ToString();
+
         if (enemy.Length == 0)
         {
             SceneManager.LoadScene(Random.Range(5,9));
@@ -57,6 +61,10 @@ public class GameManager1 : MonoBehaviour
         pausingGameobject.SetActive(true);
         Time.timeScale = 0;
         Cursor.visible = true;
+        /*if(Input.GetKey(KeyCode.Escape))
+        {
+            ReturnGame();
+        }*/
     }
  
     public void ReturnGame() 

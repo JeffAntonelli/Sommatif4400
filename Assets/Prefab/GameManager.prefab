@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8623320232456984731}
   - component: {fileID: 8623320232456984730}
-  - component: {fileID: 8623320232456984728}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,15 +45,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: []
   pausingGameobject: {fileID: 0}
---- !u!114 &8623320232456984728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8623320232456984725}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbb8c0392482682499a9de74bb2b68f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
